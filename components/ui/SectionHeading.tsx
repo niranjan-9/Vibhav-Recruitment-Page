@@ -27,7 +27,7 @@ export default function SectionHeading({
         }`}
       />
       <h2
-        className={`mt-6 text-3xl font-bold tracking-tight md:text-4xl ${
+        className={`mt-5 text-3xl font-bold tracking-tight md:text-4xl ${
           light ? "text-white" : "text-navy"
         }`}
       >
@@ -35,12 +35,11 @@ export default function SectionHeading({
       </h2>
       {tagline && (
         <p
-          className={`mt-4 text-lg font-medium md:text-xl ${
+          className={`mt-3 text-lg font-semibold md:text-xl ${
             light ? "text-gold" : "text-indigo"
           }`}
-        >
-          {tagline}
-        </p>
+          dangerouslySetInnerHTML={{ __html: tagline }}
+        />
       )}
       {description && (
         <p

@@ -2,7 +2,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #1f2937;
+  --foreground: #1a1a2e;
 }
 
 @theme inline {
@@ -14,7 +14,7 @@
 
 @theme {
   --color-navy: #1a237e;
-  --color-navy-deep: #11184f;
+  --color-navy-deep: #0d1554;
   --color-indigo: #3f51b5;
   --color-amber: #ffc107;
   --color-gold: #ffe082;
@@ -29,4 +29,28 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-soft {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.5; }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-pulse-soft {
+  animation: pulse-soft 2s ease-in-out infinite;
 }

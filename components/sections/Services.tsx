@@ -1,3 +1,4 @@
+import Link from "next/link";
 import {
   Laptop,
   Users,
@@ -79,13 +80,13 @@ export default function Services() {
         <div className="mt-14 rounded-2xl border border-indigo/10 bg-white p-6 text-center shadow-sm sm:p-8">
           <p className="text-sm text-slate-600 sm:text-base">
             Need a customized talent or offshore staffing solution?{" "}
-            <a
+            <Link
               href="/contact"
               className="inline-flex items-center gap-1.5 font-bold text-navy underline underline-offset-4 transition-colors hover:text-indigo"
             >
               <span>Speak with our recruitment advisors</span>
               <ArrowRight className="h-4 w-4" />
-            </a>
+            </Link>
           </p>
         </div>
       </div>

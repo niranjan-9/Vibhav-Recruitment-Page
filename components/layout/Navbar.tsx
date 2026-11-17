@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Menu, X, ArrowRight } from "lucide-react";
 import { navLinks, siteName } from "@/data/content";
 
@@ -12,7 +13,7 @@ export default function Navbar() {
     <header className="sticky top-0 z-50 bg-navy text-white shadow-lg backdrop-blur-sm">
       <nav className="mx-auto flex h-20 max-w-7xl items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
         {/* Brand / Logo */}
-        <a
+        <Link
           href="/"
           className="group flex shrink-0 items-center transition-transform hover:scale-[1.02]"
           onClick={() => setOpen(false)}
@@ -28,31 +29,31 @@ export default function Navbar() {
               priority
             />
           </div>
-        </a>
+        </Link>
 
         {/* Desktop Nav */}
         <ul className="hidden min-w-0 items-center gap-1 whitespace-nowrap text-sm font-medium lg:flex xl:gap-2">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
+              <Link
                 href={link.href}
                 className="rounded-lg px-3 py-2 text-white/85 transition-colors hover:bg-white/10 hover:text-gold"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
 
         {/* Desktop CTA + Mobile Menu Button */}
         <div className="flex shrink-0 items-center gap-3">
-          <a
+          <Link
             href="/contact"
             className="hidden items-center gap-2 rounded-full bg-amber px-5 py-2.5 text-xs font-bold text-navy shadow-md transition-all hover:bg-gold hover:shadow-lg hover:-translate-y-0.5 sm:inline-flex xl:text-sm"
           >
             <span>Let&apos;s Connect</span>
             <ArrowRight className="h-4 w-4" />
-          </a>
+          </Link>
 
           <button
             type="button"
@@ -72,24 +73,24 @@ export default function Navbar() {
           <ul className="space-y-1.5">
             {navLinks.map((link) => (
               <li key={link.href}>
-                <a
+                <Link
                   href={link.href}
                   onClick={() => setOpen(false)}
                   className="block rounded-xl px-4 py-3 text-base font-medium text-white/90 transition-colors hover:bg-white/10 hover:text-gold"
                 >
                   {link.label}
-                </a>
+                </Link>
               </li>
             ))}
             <li className="pt-3">
-              <a
+              <Link
                 href="/contact"
                 onClick={() => setOpen(false)}
                 className="flex items-center justify-center gap-2 rounded-full bg-amber px-6 py-3.5 text-center text-sm font-bold text-navy shadow-lg transition-colors hover:bg-gold"
               >
                 <span>Let&apos;s Connect</span>
                 <ArrowRight className="h-4 w-4" />
-              </a>
+              </Link>
             </li>
           </ul>
         </div>

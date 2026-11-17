@@ -1,85 +1,61 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
+
+// In-memory singleton for the active browser page load
+let globalAudio: HTMLAudioElement | null = null;
+let hasStartedPlayback = false;
 
 export default function IntroAudio() {
-  const audioRef = useRef<HTMLAudioElement | null>(null);
-
   useEffect(() => {
-    // Ensure audio only plays once per session
-    try {
-      if (sessionStorage.getItem("vibha_audio_has_played") === "true") {
-        return;
-      }
-    } catch {
-      // Ignore sessionStorage access restrictions in private modes
+    // If audio playback was already initiated for this page load/refresh, do not start again
+    if (hasStartedPlayback) return;
+    hasStartedPlayback = true;
+
+    if (!globalAudio) {
+      globalAudio = new Audio("/output.wav");
+      globalAudio.loop = false;
+      globalAudio.preload = "auto";
     }
 
-    const audio = audioRef.current;
-    if (!audio) return;
-
-    audio.loop = false;
-
-    let hasStarted = false;
+    const audio = globalAudio;
 
     const cleanup = () => {
-      window.removeEventListener("pointerdown", onInteraction);
-      window.removeEventListener("keydown", onInteraction);
-      window.removeEventListener("touchstart", onInteraction);
-      window.removeEventListener("click", onInteraction);
+      window.removeEventListener("pointerdown", startOnGesture);
+      window.removeEventListener("keydown", startOnGesture);
+      window.removeEventListener("touchstart", startOnGesture);
+      window.removeEventListener("click", startOnGesture);
     };
 
-    const onInteraction = () => {
-      // Prevent multiple triggers when clicking rapidly
-      if (hasStarted) return;
-      hasStarted = true;
+    const startOnGesture = () => {
       cleanup();
-
-      try {
-        sessionStorage.setItem("vibha_audio_has_played", "true");
-      } catch {
-        // Ignore
+      // Only play if audio hasn't started and hasn't ended
+      if (audio.paused && audio.currentTime === 0 && !audio.ended) {
+        audio.play().catch(() => {});
       }
-
-      audio
-        .play()
-        .catch(() => {
-          // If browser policy blocks, do not retry repeatedly
-        });
     };
 
-    // Attempt autoplay if browser policy permits
+    // Attempt direct autoplay
     const playPromise = audio.play();
     if (playPromise !== undefined) {
       playPromise
         .then(() => {
-          hasStarted = true;
           cleanup();
-          try {
-            sessionStorage.setItem("vibha_audio_has_played", "true");
-          } catch {}
         })
         .catch(() => {
-          // Autoplay blocked without user gesture: attach listener for the first interaction only
-          window.addEventListener("pointerdown", onInteraction, { once: true });
-          window.addEventListener("keydown", onInteraction, { once: true });
-          window.addEventListener("touchstart", onInteraction, { once: true });
-          window.addEventListener("click", onInteraction, { once: true });
+          // If browser policy blocks autoplay without user interaction, start on first gesture
+          window.addEventListener("pointerdown", startOnGesture, { once: true });
+          window.addEventListener("keydown", startOnGesture, { once: true });
+          window.addEventListener("touchstart", startOnGesture, { once: true });
+          window.addEventListener("click", startOnGesture, { once: true });
         });
     }
 
     return () => {
+      // Keep globalAudio playing uninterrupted as user navigates between pages
       cleanup();
     };
   }, []);
 
-  return (
-    <audio
-      ref={audioRef}
-      src="/output.wav"
-      preload="auto"
-      loop={false}
-      className="hidden"
-    />
-  );
+  return null;
 }

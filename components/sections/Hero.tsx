@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   Sparkles,
   ArrowRight,
@@ -76,20 +77,20 @@ export default function Hero() {
 
             {/* Action buttons */}
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center">
-              <a
+              <Link
                 href="/contact"
                 className="group inline-flex items-center justify-center gap-2.5 rounded-full bg-amber px-8 py-4 font-bold text-navy shadow-lg shadow-amber/20 transition-all hover:bg-gold hover:-translate-y-0.5 hover:shadow-xl hover:shadow-amber/30"
               >
                 <span>Start Hiring With Us</span>
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </a>
-              <a
+              </Link>
+              <Link
                 href="/services"
                 className="inline-flex items-center justify-center gap-2 rounded-full border border-white/30 px-8 py-4 font-semibold text-white transition-all hover:border-gold hover:bg-white/10"
               >
                 <Compass className="h-4 w-4 text-gold" />
                 <span>Explore Services</span>
-              </a>
+              </Link>
             </div>
 
             {/* Key Metrics Strip */}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Briefcase, ArrowUpRight, Send, Sparkles } from "lucide-react";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { careers } from "@/data/content";
@@ -14,7 +15,7 @@ export default function Careers() {
 
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {careers.roles.map((role) => (
-            <a
+            <Link
               key={role.title}
               href="/contact"
               className="group flex flex-col justify-between rounded-2xl border border-indigo/15 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-amber/80 hover:shadow-lg hover:shadow-indigo/10"
@@ -34,7 +35,7 @@ export default function Careers() {
               <div className="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500">
                 <span>{role.meta}</span>
               </div>
-            </a>
+            </Link>
           ))}
         </div>
 
@@ -52,13 +53,13 @@ export default function Careers() {
             Data Engineering, Cybersecurity, and ERP systems. Send us your CV.
           </p>
           <div className="mt-7 flex flex-wrap justify-center gap-4">
-            <a
+            <Link
               href="/contact"
               className="inline-flex items-center gap-2 rounded-full bg-amber px-7 py-3.5 text-sm font-bold text-navy shadow-md transition-all hover:bg-gold hover:shadow-lg hover:-translate-y-0.5"
             >
               <Send className="h-4 w-4" />
               <span>Submit Your CV / Profile</span>
-            </a>
+            </Link>
           </div>
         </div>
       </div>

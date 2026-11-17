@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   Mail,
   Phone,
@@ -36,7 +37,7 @@ export default function Footer() {
 
           {/* Brand Column with Large, Prominent Logo */}
           <div className="lg:col-span-2">
-            <a
+            <Link
               href="/"
               className="inline-block transition-transform hover:scale-[1.02]"
               aria-label={siteName}
@@ -50,7 +51,7 @@ export default function Footer() {
                   className="h-12 w-auto object-contain sm:h-14 md:h-16"
                 />
               </div>
-            </a>
+            </Link>
 
             <p className="mt-5 max-w-md text-base leading-relaxed text-white/75">
               {footer.tagline}
@@ -82,13 +83,13 @@ export default function Footer() {
             <ul className="mt-5 space-y-2.5 text-sm">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
+                  <Link
                     href={link.href}
                     className="group flex items-center gap-2 text-white/75 transition-colors hover:text-gold"
                   >
                     <ChevronRight className="h-3.5 w-3.5 text-amber/60 transition-transform group-hover:translate-x-1 group-hover:text-amber" />
                     <span>{link.label}</span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

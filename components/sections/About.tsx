@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import {
   Globe2,
   Briefcase,
@@ -120,13 +121,13 @@ export default function About() {
                 and Europe.
               </p>
               <div className="mt-6 flex flex-wrap gap-4 justify-center md:justify-start">
-                <a
+                <Link
                   href="/contact"
                   className="inline-flex items-center gap-2 rounded-full bg-amber px-6 py-2.5 text-xs font-bold text-navy shadow-md transition-all hover:bg-gold hover:shadow-lg sm:text-sm"
                 >
                   <span>Connect With Our Team</span>
                   <ArrowRight className="h-4 w-4" />
-                </a>
+                </Link>
               </div>
             </div>
 

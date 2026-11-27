@@ -262,6 +262,8 @@ export const contact = {
 export const footer = {
   tagline: "Connecting the Right Talent. Enabling Business Growth.",
   copyright: "© 2026 Vibha Recruitments. All rights reserved.",
+  developedBy: "Inoviq Technologies",
+  developedByUrl: "https://www.inoviqtechnologies.in/",
   regions: ["India", "United Kingdom", "Europe"],
 };
 

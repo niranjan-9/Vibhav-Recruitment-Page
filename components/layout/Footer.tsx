@@ -131,8 +131,17 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-xs text-white/50 sm:flex-row">
+        <div className="mt-14 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-center text-xs text-white/50 md:flex-row md:text-left">
           <p>{footer.copyright}</p>
+          <a
+            href={footer.developedByUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-white/70 transition-colors hover:text-gold hover:underline"
+          >
+            Developed by{" "}
+            <span className="font-semibold text-gold">{footer.developedBy}</span>
+          </a>
           <div className="flex items-center gap-2 text-white/70">
             <ShieldCheck className="h-4 w-4 text-amber" />
             <span>IT Recruitment &amp; Technology Talent Solutions</span>
